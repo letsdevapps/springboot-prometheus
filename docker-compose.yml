@@ -15,7 +15,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - /home/lab/workspace/springboot-prometheus/springboot-prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./springboot-prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     restart: always
     networks:
       - app-network

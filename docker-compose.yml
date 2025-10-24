@@ -1,0 +1,27 @@
+version: '3'
+services:
+  backend:
+    build: ./springboot-prometheus
+    container_name: springboot-prometheus
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - app-network
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - /home/lab/workspace/springboot-prometheus/springboot-prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: always
+    networks:
+      - app-network
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+networks:
+  app-network:
+    driver: bridge
